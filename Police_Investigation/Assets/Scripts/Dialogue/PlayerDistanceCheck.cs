@@ -14,6 +14,8 @@ public class PlayerDistanceCheck : MonoBehaviour
     [Header("Ink JSON")]
     [SerializeField ]private  TextAsset inkJSON;
 
+    private string idle = "Idle";
+
     private void Awake()
     {
         playerInRange = false;
@@ -42,6 +44,23 @@ public class PlayerDistanceCheck : MonoBehaviour
             if (CustomPlayerInputManager.instance.fPressed)
             {
                 DialogueManager.instance.EnterDialogueMode(inkJSON);
+                
+                //get and set current state
+                PlayerStats.instance.enemyState = (string) DialogueManager.instance.currentStory.variablesState["state"];
+                //Debug.Log($"Checking story variable state: {PlayerStats.instance.enemyState}");
+                //set state
+                PlayerStats.instance.states = PlayerStats.States.Idle;
+                PlayerStats.instance.StateHandling();
+
+                //check if state changed during dialogue 
+                DialogueManager.instance.currentStory.ObserveVariable("state", (arg, value) =>
+                {
+                    PlayerStats.instance.enemyState = (string)DialogueManager.instance.currentStory.variablesState["state"];
+                    //Debug.Log($"Value updated. Enemy state: {value}");
+                    PlayerStats.instance.states = PlayerStats.States.Attack;
+                    PlayerStats.instance.StateHandling();
+                });
+                
             }
         }
         else

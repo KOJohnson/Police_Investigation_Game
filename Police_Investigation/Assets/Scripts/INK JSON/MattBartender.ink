@@ -1,3 +1,4 @@
+VAR state = "idle"
 Hey, what can I get you pal?
 Welcome to the Bloody Mary
 ->Introduction 
@@ -42,7 +43,8 @@ And there's Vincent, the boss, you can find him upstairs, although it's best not
 Sure thing pal, enjoy! -> END
 
 == Combat ==
-Fuck you pig! -> END
+~state = "angry"
+Fuck you pig!  -> END
 
 == Repeat ==
 Sorry, could you repeat that? the music is loud as hell -> Introduction

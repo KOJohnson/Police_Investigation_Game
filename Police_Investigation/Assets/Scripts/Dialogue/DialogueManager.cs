@@ -19,8 +19,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject choicesPanel;
     private TextMeshProUGUI[] choicesText;
     
+    public Story currentStory;
     
-    private Story currentStory;
     public bool dialogueIsPlaying { get; private set; }
     
     
@@ -78,6 +78,30 @@ public class DialogueManager : MonoBehaviour
         choicesPanel.SetActive(true);
         
         ContinueStory();
+        
+        //////////////////////////////////////////////////////////////////////////////////////////////
+        //Move all this code into NPC script
+        //PlayerStats.instance.enemyState = (string)currentStory.variablesState["state"];
+        //Debug.Log($"Checking story variable state: {PlayerStats.instance.enemyState}");
+        
+        //set current state 
+        //PlayerStats.instance.states = PlayerStats.States.Idle;
+        
+        //execute code based on what current state is 
+        //PlayerStats.instance.StateHandling();
+        
+        // currentStory.ObserveVariable("state", (arg, value) =>
+        // {
+        //     PlayerStats.instance.enemyState = (string)currentStory.variablesState["state"];
+        //     //Debug.Log($"Value updated. Enemy state: {value}");
+        //     PlayerStats.instance.states = PlayerStats.States.Attack;
+        //     PlayerStats.instance.StateHandling();
+        // });
+       
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        
+        
+        
     }
 
     private void ExitDialogueMode()
@@ -86,6 +110,8 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         choicesPanel.SetActive(false);
         dialogueText.text = "";
+        
+        
     }
 
     private void ContinueStory()
@@ -101,7 +127,6 @@ public class DialogueManager : MonoBehaviour
         {
             ExitDialogueMode();
         }
-       
         
     }
 

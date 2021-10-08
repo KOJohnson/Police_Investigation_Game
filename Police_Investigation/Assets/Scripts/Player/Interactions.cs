@@ -1,16 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.UI;
+using UnityEngine.Events;
+
 
 public class Interactions : MonoBehaviour
 {  
     [SerializeField] LayerMask interactableLayer;
     [SerializeField] private int maxDistance = 3;
+    private UnityEvent onInteract;
 
     // Update is called once per frame
     void Update()
     {
+        
         if (CustomPlayerInputManager.instance.fPressed)
         {
             RayCastInteract();
@@ -24,6 +25,11 @@ public class Interactions : MonoBehaviour
         if (Physics.Raycast(ray, out Hit, maxDistance, interactableLayer))
         {
             Debug.Log(Hit.transform.name);
+            if (Hit.collider.GetComponent<Interactable>() != false)
+            {
+                onInteract = Hit.collider.GetComponent<Interactable>().onInteract;
+                onInteract.Invoke();
+            }
         }
     }
 }
