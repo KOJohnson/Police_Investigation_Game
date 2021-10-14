@@ -17,6 +17,9 @@ public class CustomPlayerInputManager : MonoBehaviour
     public bool leftMousePressed;
     public bool spacebarPressed;
     
+    //flashlight
+    public bool hPressed;
+    
     //camera settings
     public float mouseX;
     public float mouseY;
@@ -42,6 +45,7 @@ public class CustomPlayerInputManager : MonoBehaviour
         sPressed = false;
         dPressed = false;
         fPressed = false;
+        hPressed = false;
         leftShiftPressed = false;
         leftMousePressed = false;
     }
@@ -56,7 +60,7 @@ public class CustomPlayerInputManager : MonoBehaviour
         sPressed = Input.GetKey(KeyCode.S);
         dPressed = Input.GetKey(KeyCode.D);
         leftShiftPressed = Input.GetKey(KeyCode.LeftShift);
-        
+
         //Weapon Input
         leftMousePressed = Input.GetButtonDown("Fire1");
         
@@ -67,6 +71,9 @@ public class CustomPlayerInputManager : MonoBehaviour
         //interact input
         fPressed = Input.GetKeyDown(KeyCode.F);
         spacebarPressed = Input.GetKeyDown(KeyCode.Space);
+        
+        //Toggle Flashlight 
+        hPressed = Input.GetKeyDown(KeyCode.H);
     }
     
 }

@@ -41,6 +41,7 @@ public class PlayerDistanceCheck : MonoBehaviour
         if (playerInRange && !DialogueManager.instance.dialogueIsPlaying)
         {
             visualCue.SetActive(true);
+            
             if (CustomPlayerInputManager.instance.fPressed)
             {
                 DialogueManager.instance.EnterDialogueMode(inkJSON);

@@ -21,6 +21,6 @@ public class Interactable : MonoBehaviour
     public void AddHealth()
     {
         PlayerStats.instance.playerHealth += 10;
-        Destroy(gameObject, 2);
+        Destroy(gameObject);
     }
 }
