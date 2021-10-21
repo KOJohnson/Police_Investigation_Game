@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class NPC_States : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]private bool hasKey;
+    
+    public void KeyCheck()
     {
+        DialogueManager.instance.currentStory.ObserveVariable("hasKey", Observer);
+    }
+
+    private void Observer(string variableName, object newValue)
+    {
+        hasKey = true;
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

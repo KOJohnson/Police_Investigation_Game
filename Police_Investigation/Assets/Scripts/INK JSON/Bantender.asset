@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bantender
   m_EditorClassIdentifier: 
   name: Bartender
-  playerInRange: 0
+  playerInRange: 1
   maxRange: 5
-  INKjSON: {fileID: 4900000, guid: 3b9155b632013cd41888e449f80dcb50, type: 3}
+  inkJSON: {fileID: 4900000, guid: 3b9155b632013cd41888e449f80dcb50, type: 3}
+  Index: 2

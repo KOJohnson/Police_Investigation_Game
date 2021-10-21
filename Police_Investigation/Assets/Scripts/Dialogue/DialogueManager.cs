@@ -60,8 +60,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (CustomPlayerInputManager.instance.spacebarPressed || CustomPlayerInputManager.instance.fPressed 
-                                                              || CustomPlayerInputManager.instance.leftMousePressed)
+        if (CustomPlayerInputManager.instance.spacebarPressed || CustomPlayerInputManager.instance.leftMousePressed)
         {
             ContinueStory();
         }
@@ -86,8 +85,6 @@ public class DialogueManager : MonoBehaviour
         dialoguePanel.SetActive(false);
         choicesPanel.SetActive(false);
         dialogueText.text = "";
-        
-        
     }
 
     private void ContinueStory()

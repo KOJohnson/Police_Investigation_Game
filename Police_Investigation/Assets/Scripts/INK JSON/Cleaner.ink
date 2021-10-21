@@ -1,3 +1,4 @@
+VAR hasKey = false
 Hello, can I help you? -> Introduction
 
 == Introduction == 
@@ -23,9 +24,11 @@ O-oh, well if Vincent has told you, you must be working with him. Don't tell him
 *[you must have misheard me, what I actually said was...] -> Introduction
 
 == Intimidate ==
+~hasKey = true
 Fine, don't say I didn't warn you. (She hands you the key) -> END
 
 == C_unlock ==
+~hasKey = true
 I-I... (She wordlessly takes out the key and hands it to you) They make me do these things, please be careful
 *[Thanks for your co-operation ma'am.] -> END
 *[Better not be anything crazy down there, or I'm gonna start shooting. Starting with you.] -> END 

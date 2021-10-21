@@ -3,29 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NPC_Dialogue : MonoBehaviour
 {
+    public NPC_States npcStates;
+    public BartenderStates bState;
     public NPC_Data npcData;
-    // public Movement _movement;
-    // public GameObject player;
-    public GameObject visualCue;
-    // private float maxRange = 5f;
-    // [SerializeField] bool playerInRange;
     
-    // [Header("Ink JSON")]
-    // [SerializeField ]private  TextAsset inkJSON;
+    public GameObject visualCue;
 
-    private string idle = "Idle";
-
+    private int Bouncer;
+    private int Cleaner;
+    private int Bartender;
+    private int Boss;
+    
     private void Awake()
     {
-       
-        npcData.playerInRange = false;
+        Bouncer = 1;
+        Bartender = 2;
+        Cleaner = 3;
+        Boss = 4;
+        
+        npcData.playerInRange = false; 
         visualCue.SetActive(false);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         //returns distance between two vectors 
@@ -43,29 +46,41 @@ public class NPC_Dialogue : MonoBehaviour
 
         if ( npcData.playerInRange && !DialogueManager.instance.dialogueIsPlaying)
         {
+            //turn on visual cue to let player now that this object can be interacted with 
             visualCue.SetActive(true);
             
             if (CustomPlayerInputManager.instance.fPressed)
             {
-                DialogueManager.instance.EnterDialogueMode(npcData.INKjSON);
-
-                #region ScriptVariableObserver
-                // //get and set current state
-                // PlayerStats.instance.enemyState = (string) DialogueManager.instance.currentStory.variablesState["state"];
-                // //Debug.Log($"Checking story variable state: {PlayerStats.instance.enemyState}");
-                // //set state
-                // PlayerStats.instance.states = PlayerStats.States.Idle;
-                // PlayerStats.instance.StateHandling();
-                //
-                // //check if state changed during dialogue 
-                // DialogueManager.instance.currentStory.ObserveVariable("state", (arg, value) =>
-                // {
-                //     PlayerStats.instance.enemyState = (string)DialogueManager.instance.currentStory.variablesState["state"];
-                //     //Debug.Log($"Value updated. Enemy state: {value}");
-                //     PlayerStats.instance.states = PlayerStats.States.Attack;
-                //     PlayerStats.instance.StateHandling();
-                // });
-                #endregion
+                //Enter dialogue mode               //using text asset from each NPC Data
+                DialogueManager.instance.EnterDialogueMode(npcData.inkJSON);
+                
+                //check if var match unique index from NPC Data
+                //could probably use switch switch statement 
+                if (Cleaner == npcData.Index)
+                {
+                    Debug.Log("Cleaner Working!!!");
+                    npcStates.KeyCheck();
+                }
+                if (Bouncer == npcData.Index)
+                {
+                    //DO SOMETHING
+                    Debug.Log("Bouncer Working!!!");
+                }
+                if (Bartender == npcData.Index)
+                {
+                    //DO SOMETHING
+                    bState.Whiskey();
+                    if (bState.isDrunk)
+                    {
+                        // SceneManager.LoadScene(1);
+                        Debug.Log("Bartender Working!!!");
+                    }
+                }
+                if (Boss == npcData.Index)
+                {
+                    //DO SOMETHING
+                    Debug.Log("Boss Working!!!");
+                }
             }
         }
         else

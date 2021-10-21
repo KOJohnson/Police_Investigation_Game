@@ -1,4 +1,4 @@
-VAR state = "idle"
+VAR isDrunk = false
 Hey, what can I get you pal?
 Welcome to the Bloody Mary
 ->Introduction 
@@ -40,10 +40,10 @@ And there's Vincent, the boss, you can find him upstairs, although it's best not
 * [There ain't gonna be no fuckin' windows left by the time i'm done with it.] -> Combat
 
 == Whiskey ==
-Sure thing pal, enjoy! -> END
+~isDrunk = true
+Sure thing pal, enjoy!  -> END
 
 == Combat ==
-~state = "angry"
 Fuck you pig!  -> END
 
 == Repeat ==

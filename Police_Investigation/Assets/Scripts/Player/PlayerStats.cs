@@ -12,18 +12,18 @@ public class PlayerStats : MonoBehaviour
     public int cunning;
     public int intimidate;
     
-    //move all this to an NPC scriptable object
-    public string enemyState;
-    
-    //move all this to an NPC scriptable object
-    public enum States
-    {
-        Idle,
-        Wandering,
-        Attack
-    }
-
-    public States states;
+    // //move all this to an NPC scriptable object
+    // public string enemyState;
+    //
+    // //move all this to an NPC scriptable object
+    // public enum States
+    // {
+    //     Idle,
+    //     Wandering,
+    //     Attack
+    // }
+    //
+    // public States states;
     
     private void Awake()
     {
@@ -37,38 +37,35 @@ public class PlayerStats : MonoBehaviour
         }
     }
     
-    // Start is called before the first frame update
     void Start()
     {
         playerHealth = 100;
         
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         PlayerPosition = transform.position;
-
-      
+        
     }
     
-    //move all this to an NPC scriptable object
-    public void StateHandling()
-    {
-        switch (states)
-        {
-            case States.Idle:
-                Debug.Log("Switched Successfully now idling");
-                break;
-            
-            case States.Wandering:
-                Debug.Log("Switched Successfully now wandering");
-                break;
-            
-            case States.Attack:
-                Debug.Log("Switched Successfully now attacking");
-                break;
-        }
-    }
+    // //move all this to an NPC scriptable object
+    // public void StateHandling()
+    // {
+    //     switch (states)
+    //     {
+    //         case States.Idle:
+    //             Debug.Log("Switched Successfully now idling");
+    //             break;
+    //         
+    //         case States.Wandering:
+    //             Debug.Log("Switched Successfully now wandering");
+    //             break;
+    //         
+    //         case States.Attack:
+    //             Debug.Log("Switched Successfully now attacking");
+    //             break;
+    //     }
+    // }
     
 }

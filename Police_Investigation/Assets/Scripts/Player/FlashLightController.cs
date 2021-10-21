@@ -6,7 +6,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class FlashLightController : MonoBehaviour
 {
-    [SerializeField] private GameObject light;
+    [SerializeField] private new GameObject light;
     [SerializeField] private bool lightOn;
     private void Start()
     {
