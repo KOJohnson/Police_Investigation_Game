@@ -11,4 +11,11 @@ public class Interactable : MonoBehaviour
         PlayerStats.instance.playerHealth += 10;
         Destroy(gameObject);
     }
+
+    public void Ammo()
+    {
+        
+    }
+    
+    
 }
