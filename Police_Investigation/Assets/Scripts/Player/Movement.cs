@@ -21,11 +21,7 @@ public class Movement : MonoBehaviour
     public float _maxStamina = 100f;
     
     public TextMeshProUGUI StaminaDisplay;
-    public Image LeftStamina;
-    public Image RightStamina;
-
     
-
     private void Start() 
     {
         _stamina = _maxStamina;
@@ -36,9 +32,8 @@ public class Movement : MonoBehaviour
     void Update()
     {
         
-        
         StaminaDisplay.text = _stamina.ToString("F0");
-        //STOP STAMINA FROM INCREASING/DECREASING INFINTLEY
+        //STOP STAMINA FROM INCREASING/DECREASING INFINITELY
         if(_stamina > 100) _stamina = _maxStamina;
         if(_stamina < 0) _stamina = _minStamina;
 
@@ -50,6 +45,7 @@ public class Movement : MonoBehaviour
         {
             _currentSpeed = 0f;
             isSprinting = false;
+            
         }
 
         if(CustomPlayerInputManager.instance.wPressed)
