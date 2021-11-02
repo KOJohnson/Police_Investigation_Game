@@ -6,6 +6,12 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
     public UnityEvent onInteract;
+    private Shotgun shotgunScript;
+
+    private void Awake()
+    {
+        shotgunScript = GetComponent<Shotgun>();
+    }
     public void AddHealth()
     {
         PlayerStats.instance.playerHealth += 10;
@@ -14,7 +20,8 @@ public class Interactable : MonoBehaviour
 
     public void Ammo()
     {
-        
+        shotgunScript.ammoCount += Random.Range(1, 5);
+        Destroy(gameObject);
     }
     
     
