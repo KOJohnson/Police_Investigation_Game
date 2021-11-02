@@ -5,10 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class BartenderStates : MonoBehaviour
 {
-    public bool isDrunk;
     
     // This script observers variable using variable name in INK script
-    //checks if variable changes at any point during dialogue then calls a method
+    //checks if variable changes at any point during dialogue then calls method from Game Manager
     public void Whiskey()
     {
         DialogueManager.instance.currentStory.ObserveVariable("isDrunk", LoadDrunk);
@@ -16,14 +15,8 @@ public class BartenderStates : MonoBehaviour
 
     private void LoadDrunk(string variableName, object newValue)
     {
-        isDrunk = true;
-        StartCoroutine(LoadDrunkScene());
-
+        GameManager.instance.isDrunk = true;
     }
 
-    IEnumerator LoadDrunkScene()
-    {
-        yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(1);
-    }
+   
 }

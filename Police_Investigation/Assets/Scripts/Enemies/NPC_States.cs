@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class NPC_States : MonoBehaviour
 {
-    [SerializeField]private bool hasKey;
-    
     public void KeyCheck()
     {
         DialogueManager.instance.currentStory.ObserveVariable("hasKey", Observer);
@@ -13,8 +11,7 @@ public class NPC_States : MonoBehaviour
 
     private void Observer(string variableName, object newValue)
     {
-        hasKey = true;
-        
+        GameManager.instance.hasKey = true;
     }
 
 }

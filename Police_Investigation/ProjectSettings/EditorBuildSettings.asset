@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Drunk Ending.unity
     guid: 5c9a31bb4ec46e9408424271c05a99b8
+  - enabled: 1
+    path: Assets/Scenes/MainMenuHouse.unity
+    guid: 05aec6c04932a7f47a310f3090f4661f
+  - enabled: 1
+    path: Assets/Scenes/Candyland Scene.unity
+    guid: 391d948e7ba92ca4fabce2ab121b5950
   m_configObjects: {}

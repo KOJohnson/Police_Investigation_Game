@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class NPC_Dialogue : MonoBehaviour
 {
     public NPC_States npcStates;
-    public BartenderStates bState;
+    public BartenderStates bartender;
     public NPC_Data npcData;
     
     public GameObject visualCue;
@@ -69,12 +69,7 @@ public class NPC_Dialogue : MonoBehaviour
                 if (Bartender == npcData.Index)
                 {
                     //DO SOMETHING
-                    bState.Whiskey();
-                    if (bState.isDrunk)
-                    {
-                        // SceneManager.LoadScene(1);
-                        Debug.Log("Bartender Working!!!");
-                    }
+                    bartender.Whiskey();
                 }
                 if (Boss == npcData.Index)
                 {
