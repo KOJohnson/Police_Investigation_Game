@@ -6,11 +6,11 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour
 {
     public UnityEvent onInteract;
-    private Shotgun shotgunScript;
+    private Shotgun _shotgunScript;
 
     private void Awake()
     {
-        shotgunScript = GetComponent<Shotgun>();
+        _shotgunScript = GetComponent<Shotgun>();
     }
     public void AddHealth()
     {
@@ -20,10 +20,15 @@ public class Interactable : MonoBehaviour
 
     public void Ammo()
     {
-        shotgunScript.ammoCount += Random.Range(1, 5);
+        _shotgunScript.ammoCount += Random.Range(1, 5);
         Destroy(gameObject);
     }
-    
-    
-    
+
+    public void OpenDoor()
+    {
+        
+    }
+
+
+
 }

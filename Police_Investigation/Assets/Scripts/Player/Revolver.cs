@@ -7,26 +7,18 @@ public class Revolver : MonoBehaviour
 {
    
     [Header("Gun Stats")] 
-    [SerializeField] private float MAX_DISTANCE = 20f;
-    public float ammoCount;
-    public float ammoReserve;
+    [SerializeField] private float MAX_DISTANCE = 100f;
+    public float ammoCount= Mathf.Infinity;
     private float minAmmo = 0f;
     public float gun_damage;
     float nextFire = 0f;
     public float fireRate = 0.2f;
-    public TextMeshProUGUI AmmoCountDisplay;
-    public TextMeshProUGUI ammoReserveDisplay;
-
+    
     [SerializeField] private bool canShoot;
 
-    private void Start() 
+    private void Start()
     {
-        ammoCount = 6f;
-        ammoReserve = 0f;
         gun_damage = 45f;
-        
-        AmmoCountDisplay.text = ammoCount.ToString();
-        ammoReserveDisplay.text = ammoReserve.ToString();
     }
     void Update()
     {
@@ -56,11 +48,9 @@ public class Revolver : MonoBehaviour
         { 
             // ammo down
             ammoCount -= 1;
-            //update ammo count after shooting
-            AmmoCountDisplay.text = ammoCount.ToString();
             
             //store hit distance in float //rounds to the nearest integer
-            float distance = Mathf.Round(Hit.distance);
+            //float distance = Mathf.Round(Hit.distance);
             //Debug.LogFormat("Object = {0} and Distance = {1}", Hit.transform.name, distance);
 
             EnemyStats target = Hit.transform.GetComponent<EnemyStats>();
