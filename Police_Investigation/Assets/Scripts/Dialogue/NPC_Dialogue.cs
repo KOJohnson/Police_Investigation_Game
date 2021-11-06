@@ -17,6 +17,8 @@ public class NPC_Dialogue : MonoBehaviour
     private int Cleaner;
     private int Bartender;
     private int Boss;
+    private int Isabel;
+    private int Agent;
     
     private void Awake()
     {
@@ -24,6 +26,8 @@ public class NPC_Dialogue : MonoBehaviour
         Bartender = 2;
         Cleaner = 3;
         Boss = 4;
+        Isabel = 5;
+        Agent = 6;
         
         npcData.playerInRange = false; 
         visualCue.SetActive(false);

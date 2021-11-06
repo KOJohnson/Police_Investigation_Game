@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9312f20b098041e693a82467987a4d2a, type: 3}
   m_Name: Isabel
   m_EditorClassIdentifier: 
-  name: 
+  name: Isabel
   playerInRange: 0
   maxRange: 5
   inkJSON: {fileID: 4900000, guid: 99a0073ad453e0547adfd91c64626327, type: 3}

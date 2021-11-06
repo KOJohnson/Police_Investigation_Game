@@ -2,36 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Apple.ReplayKit;
 
 public class Shotgun : MonoBehaviour
 {
     [Header("Gun Stats")]
     [SerializeField] private float MAX_DISTANCE = 20f;
     public float ammoCount;
+    public float maxAmmo = 6f;
+    private float ammoutToReload;
+    public float reloadDelay = 0.5f;
     public float ammoReserve;
     private float minAmmo = 0f;
-    public float gun_damage;
-    float nextFire = 0f;
+    public float gunDamage;
+    private float _nextFire = 0f;
     public float fireRate = 0.2f;
-    public TextMeshProUGUI AmmoCountDisplay;
+    public TextMeshProUGUI ammoCountDsiplay;
     public TextMeshProUGUI ammoReserveDisplay;
 
-    [SerializeField] private bool canShoot;
-    // Start is called before the first frame update
-    void Start()
-    {
-        ammoCount = 6f;
-        ammoReserve = 0f;
-        gun_damage = 45f;
+    [Header("Gun Recoil")] 
+    private Vector3 _startRotation;
+    public Vector3 upRecoil;
+    public float resetSpeed;
 
-        AmmoCountDisplay.text = ammoCount.ToString();
-        ammoReserveDisplay.text = ammoReserve.ToString();
+    [Header("Gun Sounds/VFX ")] 
+    [SerializeField] private AudioSource shootSound;
+    //[SerializeField] private AudioSource emptyAmmoSound;
+    [SerializeField] private GameObject hitDecal;
+    [SerializeField] private ParticleSystem muzzleFlash;
+
+    [SerializeField] private bool canShoot;
+    public bool isReloading;
+    
+
+    // Start is called before the first frame update
+    private void Start()
+    {
+        ammoCount = maxAmmo;
+        ammoReserve = 0f;
+        gunDamage = 50f;
+
+        _startRotation = transform.localEulerAngles;
+        
+        if (ammoCountDsiplay!= null)
+            ammoCountDsiplay.text = ammoCount.ToString();
+        
+        if (ammoReserveDisplay!= null) 
+            ammoReserveDisplay.text = ammoReserve.ToString();
+        
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (ammoCount > minAmmo)
+        ammoCountDsiplay.text = ammoCount.ToString();
+        
+        if (ammoCount > minAmmo && !isReloading)
         {
             canShoot = true;
         }
@@ -42,34 +68,67 @@ public class Shotgun : MonoBehaviour
         {
             canShoot = false;
         }
-        if (CustomPlayerInputManager.instance.leftMousePressed && Time.time > nextFire && canShoot)
+        if (CustomPlayerInputManager.instance.leftMousePressed && Time.time > _nextFire && canShoot && !isReloading)
         {
-            nextFire = Time.time + fireRate;
+            _nextFire = Time.time + fireRate;
             Shooting();
+            AddRecoil();
+            
         }
+        
+        
+
+        if (CustomPlayerInputManager.instance.rPressed && ammoCount < maxAmmo)
+        {
+            StartCoroutine(Reload());
+        }
+        else isReloading = false;
     }
-    void Shooting()
+    
+    private void Shooting()
     {
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit Hit;
-        if (Physics.Raycast(ray, out Hit, MAX_DISTANCE) && canShoot)
-        {
-            // ammo down
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, MAX_DISTANCE) && canShoot)
+        { 
+            
+            shootSound.Play();
+            muzzleFlash.Play();
+            GameObject impactGO = Instantiate(hitDecal, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impactGO,2f);
+            
+            //ammo down
             ammoCount -= 1;
-            //update ammo count after shooting
-            AmmoCountDisplay.text = ammoCount.ToString();
-
-            //store hit distance in float //rounds to the nearest integer
-            float distance = Mathf.Round(Hit.distance);
-            //Debug.LogFormat("Object = {0} and Distance = {1}", Hit.transform.name, distance);
-
-            EnemyStats target = Hit.transform.GetComponent<EnemyStats>();
-
+            
+            EnemyStats target = hit.transform.GetComponent<EnemyStats>();
             if (target != null)
             {
-                target.TakeDamage(gun_damage);
+                target.TakeDamage(gunDamage);
                 //Debug.Log("Enemy hit!");
             }
         }
     }
+
+    private IEnumerator Reload()
+    {
+        isReloading = true;
+        while (ammoCount < maxAmmo)
+        {
+            ammoCount+= 1;
+            yield return new WaitForSeconds(reloadDelay);
+        }
+        
+    }
+
+    private void AddRecoil()
+    {
+        transform.localEulerAngles = Vector3.Slerp(_startRotation, upRecoil, resetSpeed);
+    }
+
+    private void ResetRecoil()
+    {
+        transform.localEulerAngles = Vector3.Slerp(upRecoil, _startRotation, resetSpeed);
+    }
+
+    
 }

@@ -8,7 +8,7 @@ public class Revolver : MonoBehaviour
    
     [Header("Gun Stats")] 
     [SerializeField] private float MAX_DISTANCE = 100f;
-    public float ammoCount= Mathf.Infinity;
+    public float ammoCount= 9999f;
     private float minAmmo = 0f;
     public float gun_damage;
     float nextFire = 0f;

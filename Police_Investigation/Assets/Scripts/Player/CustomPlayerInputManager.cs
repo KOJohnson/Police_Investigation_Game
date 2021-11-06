@@ -13,8 +13,10 @@ public class CustomPlayerInputManager : MonoBehaviour
     public bool sPressed;
     public bool dPressed;
     public bool fPressed;
+    public bool rPressed;
     public bool leftShiftPressed;
     public bool leftMousePressed;
+    public bool leftMouseReleased;
     public bool spacebarPressed;
     
     //flashlight
@@ -24,8 +26,6 @@ public class CustomPlayerInputManager : MonoBehaviour
     public float mouseX;
     public float mouseY;
     public float CamSens = 50;
-    
-
     private void Awake()
     {
         if (instance == null) //check if instance is null
@@ -46,6 +46,7 @@ public class CustomPlayerInputManager : MonoBehaviour
         dPressed = false;
         fPressed = false;
         hPressed = false;
+        rPressed = false;
         leftShiftPressed = false;
         leftMousePressed = false;
     }
@@ -63,6 +64,8 @@ public class CustomPlayerInputManager : MonoBehaviour
 
         //Weapon Input
         leftMousePressed = Input.GetButtonDown("Fire1");
+        leftMouseReleased = Input.GetButtonUp("Fire1");
+        rPressed = Input.GetKeyDown(KeyCode.R);
         
         //Camera Input
         mouseX = Input.GetAxisRaw("Mouse X") * CamSens * Time.deltaTime;

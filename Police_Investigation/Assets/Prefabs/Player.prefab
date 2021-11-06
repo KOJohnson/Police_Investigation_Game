@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2356881336298736201}
   m_Layer: 0
-  m_Name: 'Shotgun Holder '
+  m_Name: Weapon Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,9 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
   m_LocalPosition: {x: -0.08333345, y: -0.20000076, z: 0.39999998}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_Children: []
+  m_Children:
+  - {fileID: 2356881338230110774}
+  - {fileID: 2356881337075843120}
   m_Father: {fileID: 2356881337949820893}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -40,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2356881337075843120}
   m_Layer: 0
-  m_Name: Pistol Holder
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,12 +55,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2356881337075843123}
-  m_LocalRotation: {x: -0, y: 0.70710576, z: -0, w: 0.70710784}
-  m_LocalPosition: {x: -0.08333345, y: -0.20000076, z: 0.39999998}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_Children:
-  - {fileID: 2356881338230110774}
-  m_Father: {fileID: 2356881337949820893}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2356881336298736201}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2356881337909964238
@@ -290,7 +291,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2356881336298736201}
-  - {fileID: 2356881337075843120}
   m_Father: {fileID: 2356881337909964234}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -572,11 +572,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2356881338230110777}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2356881337075843120}
+  m_Father: {fileID: 2356881336298736201}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2356881338230110775
@@ -593,9 +593,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MAX_DISTANCE: 20
   ammoCount: 0
-  ammoReserve: 0
   gun_damage: 0
   fireRate: 0.2
-  AmmoCountDisplay: {fileID: 0}
-  ammoReserveDisplay: {fileID: 0}
   canShoot: 0
