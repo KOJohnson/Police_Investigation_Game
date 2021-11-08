@@ -2,21 +2,13 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
-   public float health = 100f;
-
-    public void TakeDamage(float Damage)
+    //nice
+    [SerializeField]private float damage = 20f;
+    private void OnTriggerEnter(Collider col)
     {
-        health -= Damage;
-
-        if(health <= 0)
+        if (col.CompareTag("Player"))
         {
-            Die();
+            PlayerStats.instance.PlayerTakeDamage(damage);
         }
-    }
-
-    void Die()
-    {
-        Destroy(gameObject);
-        Debug.Log("Enemy Killed");
     }
 }

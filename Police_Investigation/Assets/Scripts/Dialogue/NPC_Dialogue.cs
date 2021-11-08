@@ -9,6 +9,7 @@ public class NPC_Dialogue : MonoBehaviour
 {
     public NPC_States npcStates;
     public BartenderStates bartender;
+    public IsabelObserver iObserver;
     public NPC_Data npcData;
     
     public GameObject visualCue;
@@ -48,7 +49,7 @@ public class NPC_Dialogue : MonoBehaviour
             npcData.playerInRange = false;
         }
 
-        if ( npcData.playerInRange && !DialogueManager.instance.dialogueIsPlaying)
+        if (npcData.playerInRange && !DialogueManager.instance.dialogueIsPlaying)
         {
             //turn on visual cue to let player now that this object can be interacted with 
             visualCue.SetActive(true);
@@ -79,6 +80,11 @@ public class NPC_Dialogue : MonoBehaviour
                 {
                     //DO SOMETHING
                     Debug.Log("Boss Working!!!");
+                }
+                if (Isabel == npcData.Index)
+                {
+                    iObserver.HasGirl();
+                    Debug.Log("is working");
                 }
             }
         }

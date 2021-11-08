@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Apple.ReplayKit;
+using UnityEngine.SocialPlatforms;
 
 public class Shotgun : MonoBehaviour
 {
@@ -20,29 +21,27 @@ public class Shotgun : MonoBehaviour
     public TextMeshProUGUI ammoCountDsiplay;
     public TextMeshProUGUI ammoReserveDisplay;
 
-    [Header("Gun Recoil")] 
-    private Vector3 _startRotation;
-    public Vector3 upRecoil;
-    public float resetSpeed;
+    // [Header("Gun Recoil")] 
+    // private Vector3 _startRotation;
+    // public Vector3 upRecoil;
+    // public float resetSpeed;
 
     [Header("Gun Sounds/VFX ")] 
     [SerializeField] private AudioSource shootSound;
-    //[SerializeField] private AudioSource emptyAmmoSound;
+    [SerializeField] private AudioSource emptyGun;
+    [SerializeField] private AudioSource reloadShotgun;
     [SerializeField] private GameObject hitDecal;
     [SerializeField] private ParticleSystem muzzleFlash;
 
     [SerializeField] private bool canShoot;
     public bool isReloading;
     
-
-    // Start is called before the first frame update
     private void Start()
     {
         ammoCount = maxAmmo;
-        ammoReserve = 0f;
+        ammoReserve = 10f;
         gunDamage = 50f;
-
-        _startRotation = transform.localEulerAngles;
+        
         
         if (ammoCountDsiplay!= null)
             ammoCountDsiplay.text = ammoCount.ToString();
@@ -51,17 +50,22 @@ public class Shotgun : MonoBehaviour
             ammoReserveDisplay.text = ammoReserve.ToString();
         
     }
-
-    // Update is called once per frame
+    
     private void Update()
     {
         ammoCountDsiplay.text = ammoCount.ToString();
+        ammoReserveDisplay.text = ammoReserve.ToString();
         
         if (ammoCount > minAmmo && !isReloading)
         {
             canShoot = true;
         }
         else canShoot = false;
+
+        if (CustomPlayerInputManager.instance.leftMousePressed && ammoCount == 0 && !DialogueManager.instance.dialogueIsPlaying)
+        {
+            emptyGun.Play();
+        }
 
         //cant shoot whilst dialogue is playing
         if (DialogueManager.instance.dialogueIsPlaying)
@@ -72,17 +76,17 @@ public class Shotgun : MonoBehaviour
         {
             _nextFire = Time.time + fireRate;
             Shooting();
-            AddRecoil();
-            
         }
         
-        
-
-        if (CustomPlayerInputManager.instance.rPressed && ammoCount < maxAmmo)
+        if (CustomPlayerInputManager.instance.rPressed && ammoCount < maxAmmo && ammoReserve > 0)
         {
+            // isReloading = true;
+            // Debug.Log("set bool");
+            // canShoot = false;
             StartCoroutine(Reload());
         }
-        else isReloading = false;
+        else isReloading = false; canShoot = true;
+        
     }
     
     private void Shooting()
@@ -90,8 +94,7 @@ public class Shotgun : MonoBehaviour
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, MAX_DISTANCE) && canShoot)
-        { 
-            
+        {
             shootSound.Play();
             muzzleFlash.Play();
             GameObject impactGO = Instantiate(hitDecal, hit.point, Quaternion.LookRotation(hit.normal));
@@ -100,11 +103,10 @@ public class Shotgun : MonoBehaviour
             //ammo down
             ammoCount -= 1;
             
-            EnemyStats target = hit.transform.GetComponent<EnemyStats>();
+            AgentController target = hit.transform.GetComponent<AgentController>();
             if (target != null)
             {
                 target.TakeDamage(gunDamage);
-                //Debug.Log("Enemy hit!");
             }
         }
     }
@@ -114,21 +116,16 @@ public class Shotgun : MonoBehaviour
         isReloading = true;
         while (ammoCount < maxAmmo)
         {
+            canShoot = false;
+            ammoReserve-= 1;
             ammoCount+= 1;
+            reloadShotgun.Play();
             yield return new WaitForSeconds(reloadDelay);
         }
         
     }
-
-    private void AddRecoil()
-    {
-        transform.localEulerAngles = Vector3.Slerp(_startRotation, upRecoil, resetSpeed);
-    }
-
-    private void ResetRecoil()
-    {
-        transform.localEulerAngles = Vector3.Slerp(upRecoil, _startRotation, resetSpeed);
-    }
-
+    
+    
+    
     
 }

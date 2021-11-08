@@ -53,7 +53,7 @@ public class Revolver : MonoBehaviour
             //float distance = Mathf.Round(Hit.distance);
             //Debug.LogFormat("Object = {0} and Distance = {1}", Hit.transform.name, distance);
 
-            EnemyStats target = Hit.transform.GetComponent<EnemyStats>();
+            AgentController target = Hit.transform.GetComponent<AgentController>();
 
             if(target != null)
             {

@@ -2,15 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
     public new Vector3 PlayerPosition {get; private set;}
-
-    public int playerHealth;
-    public int cunning;
-    public int intimidate;
+    public float currentHealth;
+    public float maxHealth = 100f;
+    public HealthBar healthBar;
     
     // //move all this to an NPC scriptable object
     // public string enemyState;
@@ -39,33 +39,30 @@ public class PlayerStats : MonoBehaviour
     
     void Start()
     {
-        playerHealth = 100;
-        
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
     
     void Update()
     {
         PlayerPosition = transform.position;
+    }
+
+    public void PlayerTakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
         
+        if (currentHealth <= 0)
+        {
+            GameManager.instance.playerDead = true;
+        }
+    }
+
+    private void Die()
+    {
+        throw new NotImplementedException();
     }
     
-    // //move all this to an NPC scriptable object
-    // public void StateHandling()
-    // {
-    //     switch (states)
-    //     {
-    //         case States.Idle:
-    //             Debug.Log("Switched Successfully now idling");
-    //             break;
-    //         
-    //         case States.Wandering:
-    //             Debug.Log("Switched Successfully now wandering");
-    //             break;
-    //         
-    //         case States.Attack:
-    //             Debug.Log("Switched Successfully now attacking");
-    //             break;
-    //     }
-    // }
     
 }

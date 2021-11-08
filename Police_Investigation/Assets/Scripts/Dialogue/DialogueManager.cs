@@ -60,7 +60,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        if (CustomPlayerInputManager.instance.spacebarPressed || CustomPlayerInputManager.instance.leftMousePressed)
+        if (CustomPlayerInputManager.instance.spacebarPressed)
         {
             ContinueStory();
         }

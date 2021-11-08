@@ -7,8 +7,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    
     public bool isDrunk;
     public bool hasKey;
+    public bool hasGirl;
+    public bool playerDead;
+    
+    public int enemyKilled;
     
     [SerializeField]private GameObject uiFadeIn;
     [SerializeField]private GameObject uiFadeOut;
@@ -26,16 +31,27 @@ public class GameManager : MonoBehaviour
         uiFadeIn.SetActive(true); //enable ui element for smooth fade in
     }
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (isDrunk) StartCoroutine(LoadDrunkScene());
+        if (isDrunk && !DialogueManager.instance.dialogueIsPlaying) StartCoroutine(LoadDrunkScene());
+        
+        if (playerDead && !DialogueManager.instance.dialogueIsPlaying) StartCoroutine(LoadDeathScene());
+        
+        if (hasGirl && !DialogueManager.instance.dialogueIsPlaying) StartCoroutine(LoadRailScene());
+    }
+
+    private IEnumerator LoadRailScene()
+    {
+        uiFadeOut.SetActive(true);
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Candyland Rail Scene");
+    }
+
+    private IEnumerator LoadDeathScene()
+    {
+        uiFadeOut.SetActive(true);
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Death Scene");
     }
 
 
@@ -44,6 +60,7 @@ public class GameManager : MonoBehaviour
         uiFadeOut.SetActive(true);
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene("Drunk Ending");
+
     }
     
     
