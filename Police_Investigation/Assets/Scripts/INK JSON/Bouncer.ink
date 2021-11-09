@@ -1,3 +1,4 @@
+VAR openDoor = false
 Hey, I’m sorry boss, you can’t come in, club’s full
 ->Introduction
 == Introduction == 
@@ -7,6 +8,7 @@ Hey, I’m sorry boss, you can’t come in, club’s full
 * [What is this place?] -> Question
 
 == Intimidate ==
+~openDoor = true
 Alright, Alright, Jesus, you can come in, but be quick, and don’t say a fucking word.
 * Thanks for your co-operation. -> END 
 
@@ -15,6 +17,7 @@ Fuck off, before I break your damn neck.
 * Sorry, must of misheard me, my mistake -> Introduction
 
 == Bribe ==
+~openDoor = true
 Damn, talking my kind of language. Alright, get in quick, and don’t tell anyone I let you in.
 * I appreciate it -> END
 

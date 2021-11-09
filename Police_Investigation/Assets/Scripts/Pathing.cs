@@ -57,14 +57,20 @@ public class Pathing : MonoBehaviour
         
         switch (GameManager.instance.enemyKilled)
         {
-            case 5:
+            case 3:
                 _agent.SetDestination(moveVectors[0]);
                 break;
-            case 10:
+            case 6:
                 _agent.SetDestination(moveVectors[1]);
                 break;
-            case 20:
+            case 9:
                 _agent.SetDestination(moveVectors[2]);
+                break;
+            case 12:
+                _agent.SetDestination(moveVectors[3]);
+                break;
+            case 13:
+                _agent.SetDestination(moveVectors[4]);
                 break;
         }
     }

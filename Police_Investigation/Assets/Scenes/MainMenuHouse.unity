@@ -5368,7 +5368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1655558093
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5924,8 +5924,10 @@ MonoBehaviour:
   sPressed: 0
   dPressed: 0
   fPressed: 0
+  rPressed: 0
   leftShiftPressed: 0
   leftMousePressed: 0
+  leftMouseReleased: 0
   spacebarPressed: 0
   hPressed: 0
   mouseX: 0
@@ -5991,7 +5993,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 8400000, guid: b66e73bcba2600540b5aa3eb8c375f33, type: 2}
+  m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0

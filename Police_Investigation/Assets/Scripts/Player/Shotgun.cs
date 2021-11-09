@@ -18,13 +18,9 @@ public class Shotgun : MonoBehaviour
     public float gunDamage;
     private float _nextFire = 0f;
     public float fireRate = 0.2f;
+    
     public TextMeshProUGUI ammoCountDsiplay;
     public TextMeshProUGUI ammoReserveDisplay;
-
-    // [Header("Gun Recoil")] 
-    // private Vector3 _startRotation;
-    // public Vector3 upRecoil;
-    // public float resetSpeed;
 
     [Header("Gun Sounds/VFX ")] 
     [SerializeField] private AudioSource shootSound;
@@ -80,9 +76,9 @@ public class Shotgun : MonoBehaviour
         
         if (CustomPlayerInputManager.instance.rPressed && ammoCount < maxAmmo && ammoReserve > 0)
         {
-            // isReloading = true;
+            isReloading = true;
             // Debug.Log("set bool");
-            // canShoot = false;
+            canShoot = false;
             StartCoroutine(Reload());
         }
         else isReloading = false; canShoot = true;
@@ -116,7 +112,11 @@ public class Shotgun : MonoBehaviour
         isReloading = true;
         while (ammoCount < maxAmmo)
         {
-            canShoot = false;
+            if (ammoReserve <= 0)
+            {
+                yield break;
+            }
+            
             ammoReserve-= 1;
             ammoCount+= 1;
             reloadShotgun.Play();

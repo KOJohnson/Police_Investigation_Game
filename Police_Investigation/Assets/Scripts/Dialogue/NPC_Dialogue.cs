@@ -10,6 +10,7 @@ public class NPC_Dialogue : MonoBehaviour
     public NPC_States npcStates;
     public BartenderStates bartender;
     public IsabelObserver iObserver;
+    public BouncerObserver bObserver;
     public NPC_Data npcData;
     
     public GameObject visualCue;
@@ -63,13 +64,12 @@ public class NPC_Dialogue : MonoBehaviour
                 //could probably use switch switch statement 
                 if (Cleaner == npcData.Index)
                 {
-                    Debug.Log("Cleaner Working!!!");
                     npcStates.KeyCheck();
                 }
                 if (Bouncer == npcData.Index)
                 {
                     //DO SOMETHING
-                    Debug.Log("Bouncer Working!!!");
+                    bObserver.OpenDoor();
                 }
                 if (Bartender == npcData.Index)
                 {
@@ -79,12 +79,10 @@ public class NPC_Dialogue : MonoBehaviour
                 if (Boss == npcData.Index)
                 {
                     //DO SOMETHING
-                    Debug.Log("Boss Working!!!");
                 }
                 if (Isabel == npcData.Index)
                 {
                     iObserver.HasGirl();
-                    Debug.Log("is working");
                 }
             }
         }

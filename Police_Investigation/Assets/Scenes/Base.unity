@@ -2746,7 +2746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &590825744
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4255,6 +4255,10 @@ PrefabInstance:
     - target: {fileID: 2356881337949820892, guid: 922aa47ac48ece042ae48e9d4a9da3ce, type: 3}
       propertyPath: m_FocalLength
       value: 6.928203
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356881337949820892, guid: 922aa47ac48ece042ae48e9d4a9da3ce, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2356881337949820892, guid: 922aa47ac48ece042ae48e9d4a9da3ce, type: 3}
       propertyPath: m_projectionMatrixMode
@@ -5998,6 +6002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDrunk: 0
   hasKey: 0
+  openDoor: 0
   hasGirl: 0
   playerDead: 0
   enemyKilled: 0

@@ -10,7 +10,7 @@ public class Interactable : MonoBehaviour
 
     private void Awake()
     {
-        _shotgunScript = GetComponent<Shotgun>();
+        _shotgunScript = FindObjectOfType<Shotgun>();
     }
     public void AddHealth()
     {
@@ -20,12 +20,16 @@ public class Interactable : MonoBehaviour
 
     public void Ammo()
     {
-        _shotgunScript.ammoCount += Random.Range(1, 5);
+        _shotgunScript.ammoReserve += Random.Range(1, 5);
         Destroy(gameObject);
     }
 
     public void OpenDoor()
     {
+        if (GameManager.instance.hasKey)
+        {
+            StartCoroutine(GameManager.instance.LoadBasementScene());
+        }
         
     }
 

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     
     public bool isDrunk;
     public bool hasKey;
+    public bool openDoor;
     public bool hasGirl;
     public bool playerDead;
     
@@ -63,6 +64,12 @@ public class GameManager : MonoBehaviour
 
     }
     
-    
-    
+    public IEnumerator LoadBasementScene()
+    {
+        uiFadeOut.SetActive(true);
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Base");
+
+    }
+
 }

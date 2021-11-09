@@ -9,7 +9,7 @@ using Random = System.Random;
 public class AgentController : MonoBehaviour
 {
     [SerializeField]private float health = 100f; 
-    [SerializeField]private bool isDead;
+    [SerializeField]public bool isDead;
 
     [SerializeField]private NavMeshAgent agent;
     [SerializeField]private float _distanceToPlayer;
@@ -20,12 +20,6 @@ public class AgentController : MonoBehaviour
    public Transform player;
    public CapsuleCollider collider;
    
-
-   private void Awake()
-   {
-       
-   }
-
    private void Update()
    {
        bool playerDead = GameManager.instance.playerDead;
@@ -41,7 +35,7 @@ public class AgentController : MonoBehaviour
            AttackPlayer();
        }
 
-       if (playerDead)
+       if (playerDead && !isDead)
        {
            agent.speed = 0f; 
            anim.Play("Zombie Scream");
