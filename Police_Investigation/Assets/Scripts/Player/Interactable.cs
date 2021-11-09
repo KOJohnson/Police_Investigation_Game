@@ -33,6 +33,11 @@ public class Interactable : MonoBehaviour
         
     }
 
+    public void LoadCredits()
+    {
+        StartCoroutine(GameManager.instance.LoadCreditScene());
+    }
+
 
 
 }

@@ -401,6 +401,7 @@ MonoBehaviour:
   ammoReserveDisplay: {fileID: 0}
   shootSound: {fileID: 6187086774086106719}
   emptyGun: {fileID: 1018969688273021276}
+  reloadShotgun: {fileID: 0}
   hitDecal: {fileID: 1000013169864706, guid: e5a3d6da48298a0458c1990f58c27069, type: 3}
   muzzleFlash: {fileID: 6070277295225295812}
   canShoot: 0

@@ -72,4 +72,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public IEnumerator LoadCreditScene()
+    {
+        uiFadeOut.SetActive(true);
+        yield return new WaitForSeconds(2);
+        SceneManager.LoadScene("Credits");
+    }
+
 }

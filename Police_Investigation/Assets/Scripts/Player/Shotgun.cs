@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.Apple.ReplayKit;
-using UnityEngine.SocialPlatforms;
+
 
 public class Shotgun : MonoBehaviour
 {
@@ -35,7 +34,7 @@ public class Shotgun : MonoBehaviour
     private void Start()
     {
         ammoCount = maxAmmo;
-        ammoReserve = 10f;
+        ammoReserve = 20f;
         gunDamage = 50f;
         
         
