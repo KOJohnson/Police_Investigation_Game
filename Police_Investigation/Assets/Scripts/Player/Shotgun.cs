@@ -34,7 +34,7 @@ public class Shotgun : MonoBehaviour
     private void Start()
     {
         ammoCount = maxAmmo;
-        ammoReserve = 20f;
+        ammoReserve = 50f;
         gunDamage = 50f;
         
         
@@ -111,6 +111,10 @@ public class Shotgun : MonoBehaviour
         isReloading = true;
         while (ammoCount < maxAmmo)
         {
+            if (CustomPlayerInputManager.instance.leftMousePressed)
+            {
+                yield break;
+            }
             if (ammoReserve <= 0)
             {
                 yield break;

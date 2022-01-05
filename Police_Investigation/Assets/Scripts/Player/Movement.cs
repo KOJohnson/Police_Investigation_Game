@@ -114,13 +114,6 @@ public class Movement : MonoBehaviour
         }
     }
 
-    // void StaminaUpdate()
-    // {
-    //     if(_stamina == _maxStamina)
-    //     {
-    //         LeftStamina.fillAmount = 1;
-    //         RightStamina.fillAmount = 1;
-    //     }
-    // }
+   
 
 }

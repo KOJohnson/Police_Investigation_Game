@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    
 
     
     public bool isDrunk;
@@ -34,12 +36,22 @@ public class GameManager : MonoBehaviour
     
     void Update()
     {
+        if (DialogueManager.instance.dialogueIsPlaying)
+        {
+            EventManager.OnDisablePlayerMovement();
+        }
+        else
+        {
+            EventManager.OnEnableMovement();
+        }
+        
         if (isDrunk && !DialogueManager.instance.dialogueIsPlaying) StartCoroutine(LoadDrunkScene());
         
         if (playerDead && !DialogueManager.instance.dialogueIsPlaying) StartCoroutine(LoadDeathScene());
         
         if (hasGirl && !DialogueManager.instance.dialogueIsPlaying) StartCoroutine(LoadRailScene());
     }
+    
 
     private IEnumerator LoadRailScene()
     {

@@ -68,6 +68,8 @@ public class DialogueManager : MonoBehaviour
 
     }
 
+   
+
     public void EnterDialogueMode(TextAsset inkJSON)
     {
         //set story to whatever ink file has been parsed in

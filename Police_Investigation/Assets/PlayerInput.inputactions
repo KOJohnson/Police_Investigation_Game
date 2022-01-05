@@ -1,0 +1,169 @@
+{
+    "name": "PlayerInput",
+    "maps": [
+        {
+            "name": "Movement",
+            "id": "6a5bf4a1-a156-49f6-acbe-4a9219ecb79c",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Button",
+                    "id": "d6f4d23d-21d1-4deb-8a63-2f5a2ed55365",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "2D Vector",
+                    "id": "511925ff-d706-4ded-8f06-86e3b16e6340",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "d34c6379-9a81-46d0-a844-8dd9ed510875",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "886a0e91-2f56-4537-89b4-246d8200d6e3",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "a8250e61-5f39-4063-82ef-04c39adb6ae7",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "96b66bd4-b60a-4715-8e57-a7b043c2d29a",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        },
+        {
+            "name": "Interaction",
+            "id": "b33e5d78-23fd-4c24-b9a7-86b7ee1c2c0e",
+            "actions": [
+                {
+                    "name": "StartDialogue",
+                    "type": "Button",
+                    "id": "c147dc63-c90b-4f0f-b060-b39975a2e49f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "NextDialogue",
+                    "type": "Button",
+                    "id": "178c084d-5df4-4a8d-9a88-8edfebfc4af7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "ExitDialogue",
+                    "type": "Button",
+                    "id": "a34a6bad-fd6c-40e4-a7a3-5d73a5fdda29",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "96b991a7-5863-400d-bcd6-faff6cbe81e1",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eedfd3b9-b96e-4b2e-94d2-7d2ef2eb1dee",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NextDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4ec6885d-80f3-4671-beaf-36d9087fdca3",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExitDialogue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "MouseLook",
+            "id": "b57b9702-9a99-4853-9f2c-25e012a2a19d",
+            "actions": [
+                {
+                    "name": "LookVector",
+                    "type": "Value",
+                    "id": "9f86dc6a-1b27-4fc0-99ce-8dcc04d724c5",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "09d4f5bc-ae59-496d-8788-2246c655a5a0",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookVector",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
